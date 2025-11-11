@@ -20,6 +20,15 @@ RUN dnf install -y \
     && python --version \
     && dnf clean all
 
+# Install XFCE4 and noVNC
+RUN dnf install -y epel-release && \
+    dnf groupinstall -y "Xfce" && \
+    dnf install -y tigervnc-server xorg-x11-fonts-* && \
+    curl -sL https://github.com/novnc/noVNC/archive/refs/tags/v1.4.0.tar.gz | tar xz -C /opt && \
+    mv /opt/noVNC-1.4.0 /opt/noVNC && \
+    ln -s /opt/noVNC/utils/novnc_proxy /usr/local/bin/novnc_proxy && \
+    dnf clean all
+
 # Set the PATH so that /usr/local/bin has priority
 ENV PATH=/usr/local/bin:$PATH
 
