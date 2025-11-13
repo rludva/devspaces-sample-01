@@ -12,14 +12,19 @@ components:
       volumeMounts:
         - name: venv
           path: /home/user/.venv
+        - name: test-pip-config
+          path: /home/user/.config/pip
       memoryLimit: 2Gi
       memoryRequest: 1Gi
       cpuLimit: '2'
       cpuRequest: '1'
       mountSources: true
+  - name: test-pip-config
+    volume:
+      size: 10Mi
   - name: venv
     volume:
-      size: 1G
+      size: 1Gi
 commands:
   - id: run
     exec:
@@ -29,4 +34,4 @@ commands:
       commandLine: python -m venv .venv && . .venv/bin/activate && python hello-world.py
       group:
         kind: run
-
+        
