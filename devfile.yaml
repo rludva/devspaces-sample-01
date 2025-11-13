@@ -8,7 +8,7 @@ projects:
 components:
   - name: python
     container:
-      image: quay.io/rludva/udi-bofa-rhel9:v1
+      image: quay.io/rludva/udi-spark-rhel9:v1
       volumeMounts:
         - name: venv
           path: /home/user/.venv
